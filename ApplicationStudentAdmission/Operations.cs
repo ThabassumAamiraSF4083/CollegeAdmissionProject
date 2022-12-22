@@ -48,7 +48,7 @@ namespace ApplicationStudentAdmission
         AdmissionDetails admission2=new AdmissionDetails(student2.StudentID,cse.DepartmentID,new DateTime(2022,05,11),AdmissionStatus.Admitted);
         admissionList.Add(admission2);
         }
-    
+        
     public static void TakeAdmission()
         {
             foreach(DepartmentDetails department in departmentList)
