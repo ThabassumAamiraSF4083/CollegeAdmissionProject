@@ -7,6 +7,48 @@ namespace ApplicationStudentAdmission
 {
     public class Operations
     {
+        public static void Login()
+        {
+            System.Console.WriteLine("Enter your ID: ");
+            string studentID=Console.ReadLine();
+            bool check=true;
+            foreach(StudentDetails studentInfo in studentList)
+            {
+                if(studentInfo.StudentID==studentID)
+                {
+                    check=false;
+                    System.Console.WriteLine("Login Succesfull");
+                    currectStudent=studentInfo;
+                    SubMenu();
+
+                }
+            }
+            if(check)
+            {
+                System.Console.WriteLine("Invalid Student ID: ");
+            } 
+        }
+    public static void DefaultData()
+        {
+        StudentDetails student1=new StudentDetails("Ravichandran","Ettaparajan",Gender.Male,new DateTime(1999,11,11),57457457575,90,90,90);
+        studentList.Add(student1);
+        StudentDetails student2=new StudentDetails("Baskaran","Sethurajan",Gender.Male,new DateTime(1999,11,11),6576573635,95,95,95);
+        studentList.Add(student2);
+        List<DepartmentDetails> departmentList=new List<DepartmentDetails>();
+        DepartmentDetails eee=new DepartmentDetails("EEE",29);
+        departmentList.Add(eee);
+        DepartmentDetails cse=new DepartmentDetails("CSE",29);
+        departmentList.Add(cse);
+        DepartmentDetails mech=new DepartmentDetails("MECH",30);
+        departmentList.Add(mech);
+        DepartmentDetails ece=new DepartmentDetails("ECE",30);
+        departmentList.Add(ece);
+        AdmissionDetails admission1=new AdmissionDetails(student1.StudentID,ece.DepartmentID,new DateTime(2022,05,11),AdmissionStatus.Admitted);
+        admissionList.Add(admission1);
+        AdmissionDetails admission2=new AdmissionDetails(student2.StudentID,cse.DepartmentID,new DateTime(2022,05,11),AdmissionStatus.Admitted);
+        admissionList.Add(admission2);
+        }
+        
     public static void TakeAdmission()
         {
             foreach(DepartmentDetails department in departmentList)
