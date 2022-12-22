@@ -70,5 +70,41 @@ namespace ApplicationStudentAdmission
             //no- create admission, reduce seat count in department
             //Show Admission successfull.
         }
+    
+    public static void CheckEligiblity()
+        {
+            bool eligiblity = currentStudent.CheckEligiblity(75.0);
+            if(eligiblity)
+            {
+                System.Console.WriteLine("You are eligible for admission");
+            }
+            else
+            {
+                System.Console.WriteLine("You are not eligible for admission");
+            }
+        }
+    }
+
+    public static void ShowDetails()
+    {
+        Console.WriteLine($"Name :  {currentStudent.StudentName} \nFatherName : {currentStudent.FatherName} \nGender : {currentStudent.Gender}");
+        Console.WriteLine($"Phone : {currentStudent.Phone} \nDOB : {currentStudent.DOB.ToString("dd/MM/yyyy")} Physics : {currentStudent.Physics}");
+        Console.WriteLine($"Chemistry : {currentStudent.Chemistry} \nMaths : {currentStudent.Maths}");
+    }
+    public static void ShowAdmissionHistory()
+    {
+        bool condition = true;
+        foreach(AdmissionDetails admission in admissionList)
+        {
+            if(currentStudent.StudentID == admission.StudentID)
+            {
+                Console.WriteLine($"Admission ID : {admission.AdmissionID} \nStudent ID : {admission.StudentID} \nDepartment ID : {admission.DepartmentID}");
+                Console.WriteLine($"\nAdmission Date : {admission.AdmissionDate.ToString("dd/MM/yyyy")} \nStatus : {admission.AdmissionStatus}");
+            }
+            if(condition)
+            {
+                System.Console.WriteLine("You have not taken any admission Yet");
+            }
+        }
     }
 }
