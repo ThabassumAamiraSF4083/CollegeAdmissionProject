@@ -7,6 +7,36 @@ namespace ApplicationStudentAdmission
 {
     public class Operations
     {
+        public static void Mainmenu()
+        {
+            int option = 0;
+            do
+            {
+                Console.WriteLine("**********Main Menu**********");
+                Console.WriteLine("\t1.Registration \n\t2.Login \n\t3.Exit");
+                option = int.Parse(Console.ReadLine());
+                switch (option)
+                {
+                    case 1:
+                        {
+                            Console.WriteLine("******REgistration  Form******");
+                            Registration();
+                            break;
+                        }
+                    case 2:
+                        {
+                            Console.WriteLine("******Login From********");
+                            Login();
+                            break;
+                        }
+                    case 3:
+                        {
+                            Console.WriteLine("*****Exit From Manin Menu****");
+                            break;
+                        }
+                }
+            } while (option != 3);
+        }
         public static void Login()
         {
             System.Console.WriteLine("Enter your ID: ");
@@ -27,6 +57,60 @@ namespace ApplicationStudentAdmission
             {
                 System.Console.WriteLine("Invalid Student ID: ");
             } 
+        }
+        static void Submenu()
+        {
+            int option;
+            do
+            {
+
+                Console.WriteLine("****SUB Menu******");
+                Console.WriteLine("\t1.Check Eligibilty \t2 Show Details \t3 Take Admission");
+                Console.WriteLine("\t4.Cancel Admission \t5 Show Admission Details \t6 Exit");
+                option = int.Parse(Console.ReadLine());
+                switch (option)
+                {
+                    case 1:
+                        {
+                            Console.WriteLine("****Check Eligibility******");
+                            CheckEligibility();
+                            break;
+                        }
+                    case 2:
+                        {
+                            Console.WriteLine("****Show Details******");
+                            ShowDetails();
+                            break;
+                        }
+                    case 3:
+                        {
+                            Console.WriteLine("****Take Admission******");
+                            TakeAdmission();
+                            break;
+                        }
+                    case 4:
+                        {
+                            Console.WriteLine("Cancel Admission");
+                            CancelAdmission();
+                            break;
+                        }
+                    case 5:
+                        {
+                            Console.WriteLine("Show Admission Details");
+                            ShowAdmissionHistory();
+                            break;
+                        }
+                    case 6:
+                        {
+                            Console.WriteLine("****Exit****");
+                            Mainmenu();
+                            break;
+                        }
+
+                }
+
+            } while (option != 6);
+
         }
     public static void DefaultData()
         {
