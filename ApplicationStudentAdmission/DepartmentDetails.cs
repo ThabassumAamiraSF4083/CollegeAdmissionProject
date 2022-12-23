@@ -11,7 +11,7 @@ namespace ApplicationStudentAdmission
         public string DepartmentName{get;set;}
         public string DepartmentID{get;}
         public int NoOfSeats{get;set;}
-
+        
         public DepartmentDetails(string depratmentName,int numberofseats)
         {
             s_departmentID++;
