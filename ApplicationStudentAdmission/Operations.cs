@@ -7,6 +7,132 @@ namespace ApplicationStudentAdmission
 {
     public class Operations
     {
+        public static void Mainmenu()
+        {
+            int option = 0;
+            do
+            {
+                Console.WriteLine("**********Main Menu**********");
+                Console.WriteLine("\t1.Registration \n\t2.Login \n\t3.Exit");
+                option = int.Parse(Console.ReadLine());
+                switch (option)
+                {
+                    case 1:
+                        {
+                            Console.WriteLine("******REgistration  Form******");
+                            Registration();
+                            break;
+                        }
+                    case 2:
+                        {
+                            Console.WriteLine("******Login From********");
+                            Login();
+                            break;
+                        }
+                    case 3:
+                        {
+                            Console.WriteLine("*****Exit From Manin Menu****");
+                            break;
+                        }
+                }
+            } while (option != 3);
+        }
+        public static void Login()
+        {
+            System.Console.WriteLine("Enter your ID: ");
+            string studentID=Console.ReadLine();
+            bool check=true;
+            foreach(StudentDetails studentInfo in studentList)
+            {
+                if(studentInfo.StudentID==studentID)
+                {
+                    check=false;
+                    System.Console.WriteLine("Login Succesfull");
+                    currectStudent=studentInfo;
+                    SubMenu();
+
+                }
+            }
+            if(check)
+            {
+                System.Console.WriteLine("Invalid Student ID: ");
+            } 
+        }
+        static void Submenu()
+        {
+            int option;
+            do
+            {
+
+                Console.WriteLine("****SUB Menu******");
+                Console.WriteLine("\t1.Check Eligibilty \t2 Show Details \t3 Take Admission");
+                Console.WriteLine("\t4.Cancel Admission \t5 Show Admission Details \t6 Exit");
+                option = int.Parse(Console.ReadLine());
+                switch (option)
+                {
+                    case 1:
+                        {
+                            Console.WriteLine("****Check Eligibility******");
+                            CheckEligibility();
+                            break;
+                        }
+                    case 2:
+                        {
+                            Console.WriteLine("****Show Details******");
+                            ShowDetails();
+                            break;
+                        }
+                    case 3:
+                        {
+                            Console.WriteLine("****Take Admission******");
+                            TakeAdmission();
+                            break;
+                        }
+                    case 4:
+                        {
+                            Console.WriteLine("Cancel Admission");
+                            CancelAdmission();
+                            break;
+                        }
+                    case 5:
+                        {
+                            Console.WriteLine("Show Admission Details");
+                            ShowAdmissionHistory();
+                            break;
+                        }
+                    case 6:
+                        {
+                            Console.WriteLine("****Exit****");
+                            Mainmenu();
+                            break;
+                        }
+
+                }
+
+            } while (option != 6);
+
+        }
+    public static void DefaultData()
+        {
+        StudentDetails student1=new StudentDetails("Ravichandran","Ettaparajan",Gender.Male,new DateTime(1999,11,11),57457457575,90,90,90);
+        studentList.Add(student1);
+        StudentDetails student2=new StudentDetails("Baskaran","Sethurajan",Gender.Male,new DateTime(1999,11,11),6576573635,95,95,95);
+        studentList.Add(student2);
+        List<DepartmentDetails> departmentList=new List<DepartmentDetails>();
+        DepartmentDetails eee=new DepartmentDetails("EEE",29);
+        departmentList.Add(eee);
+        DepartmentDetails cse=new DepartmentDetails("CSE",29);
+        departmentList.Add(cse);
+        DepartmentDetails mech=new DepartmentDetails("MECH",30);
+        departmentList.Add(mech);
+        DepartmentDetails ece=new DepartmentDetails("ECE",30);
+        departmentList.Add(ece);
+        AdmissionDetails admission1=new AdmissionDetails(student1.StudentID,ece.DepartmentID,new DateTime(2022,05,11),AdmissionStatus.Admitted);
+        admissionList.Add(admission1);
+        AdmissionDetails admission2=new AdmissionDetails(student2.StudentID,cse.DepartmentID,new DateTime(2022,05,11),AdmissionStatus.Admitted);
+        admissionList.Add(admission2);
+        }
+        
     public static void TakeAdmission()
         {
             foreach(DepartmentDetails department in departmentList)
@@ -94,5 +220,41 @@ namespace ApplicationStudentAdmission
                 }
             }
             //admission status cancelled
+    
+    public static void CheckEligiblity()
+        {
+            bool eligiblity = currentStudent.CheckEligiblity(75.0);
+            if(eligiblity)
+            {
+                System.Console.WriteLine("You are eligible for admission");
+            }
+            else
+            {
+                System.Console.WriteLine("You are not eligible for admission");
+            }
+        }
+    }
+
+    public static void ShowDetails()
+    {
+        Console.WriteLine($"Name :  {currentStudent.StudentName} \nFatherName : {currentStudent.FatherName} \nGender : {currentStudent.Gender}");
+        Console.WriteLine($"Phone : {currentStudent.Phone} \nDOB : {currentStudent.DOB.ToString("dd/MM/yyyy")} Physics : {currentStudent.Physics}");
+        Console.WriteLine($"Chemistry : {currentStudent.Chemistry} \nMaths : {currentStudent.Maths}");
+    }
+    public static void ShowAdmissionHistory()
+    {
+        bool condition = true;
+        foreach(AdmissionDetails admission in admissionList)
+        {
+            if(currentStudent.StudentID == admission.StudentID)
+            {
+                Console.WriteLine($"Admission ID : {admission.AdmissionID} \nStudent ID : {admission.StudentID} \nDepartment ID : {admission.DepartmentID}");
+                Console.WriteLine($"\nAdmission Date : {admission.AdmissionDate.ToString("dd/MM/yyyy")} \nStatus : {admission.AdmissionStatus}");
+            }
+            if(condition)
+            {
+                System.Console.WriteLine("You have not taken any admission Yet");
+            }
+        }
     }
 }
