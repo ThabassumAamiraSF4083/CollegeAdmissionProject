@@ -196,6 +196,30 @@ namespace ApplicationStudentAdmission
             //no- create admission, reduce seat count in department
             //Show Admission successfull.
         }
+        public static void CancelAdmission()
+        {
+            //Fetch admission details
+            foreach(AdmissionDetails admission in admissionList)
+            {
+                //check student and admission status is admitted
+                if(admission.StudentID==currentStudent.StudentID)
+                {
+                    //Cancel the admission status
+                    admission.AdmissionStatus=AdmissionStatus.Cancelled;
+                    //Fetch department
+                    foreach(DepartmentDetails department in departmentList)
+                    {
+                        //check department ID
+                        if(department.DepartmentID==admission.DepartmentID)
+                        {
+                            //Increase the seats
+                            department.NumberOfSeats++;
+                        }
+                    }
+                    Console.WriteLine("Your admission was cancelled successfully!!!");
+                }
+            }
+            //admission status cancelled
     
     public static void CheckEligiblity()
         {
