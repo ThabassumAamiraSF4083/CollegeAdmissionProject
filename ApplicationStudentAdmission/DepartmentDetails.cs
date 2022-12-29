@@ -7,12 +7,16 @@ namespace ApplicationStudentAdmission
 {
     public class DepartmentDetails
     {
-
        private static int s_departmentID=101;
         public string DepartmentName{get;set;}
         public string DepartmentID{get;}
         public int NoOfSeats{get;set;}
-        
+
+       private static int s_departmentID=101;
+        public string DepartmentName{get;set;}
+        public string DepartmentID{get;}
+        public int NoOfSeats{get;set;}     
+
         public DepartmentDetails(string depratmentName,int numberofseats)
         {
             s_departmentID++;
